@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .    # Contexto do build é onde o docker-compose.yml está localizado -> Dockerfile nesse diretório será utilizado para construir a imagem do container
+      args:
+        - DEV=true
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./app:/app  # Mudanças feitas no código serão refletidas imediatamente ao container. 
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
